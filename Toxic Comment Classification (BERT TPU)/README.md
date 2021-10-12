@@ -18,8 +18,7 @@ There are many approaches that we can apply but they generally fall within 2 maj
 While it is nice if we can try out all the techniques, it is unlikely that most of us have sufficient computation resources to do it. However, if you have sufficient resources and time, please do give other methods a shot!
 
 ### The choosen one:
-Due to limited computation time on Colab's free tier, I will only use the simplest method of sampling which is to balance out the number of clean and toxic comments relatively evenly manually. Surprisingly, this is sufficient to give us a reasonable baseline model!
-
+Due to limited computation time on Colab's free tier, I will only use the simplest method of sampling which is to balance out the number of clean and toxic comments relatively evenly manually. Surprisingly, this is sufficient to give us a reasonable baseline model! Below are just some methods which you can try out (there are a lot more ways):
 
 |S/N:| Method | Description |
 |--- | --- | --- |
@@ -32,6 +31,11 @@ Due to limited computation time on Colab's free tier, I will only use the simple
 ## 2. Model
 The model used here was a BERT base (uncased) model. This is a pretrained model on an enormous corpus of English words using a masked language modeling objective. You can find more of the model's description here: https://huggingface.co/bert-base-uncased 
 
+While training on a GPU is fast, training on TPU is even faster especially for models like BERT whose parameters can easily over a hundred million! Placing the model on the GPU would take approximate 25 minutes per epoch while on a TPU, an epoch will take less than 5 minutes to train, reducing training time by almost 80%. The only issue is that training on a TPU is scary process. However, huge thanks to Abid Ali Awan's article (check out the references section below) which provided an excellent example on training a BERT model on TPU, I was able to create the model with relative ease.
+
 ## 3. Results
 - Validation Accuracy: 93.652%
 - Test Accuracy: 98.341%
+
+## 4. Reference:
+1. https://www.analyticsvidhya.com/blog/2021/08/training-bert-text-classifier-on-tensor-processing-unit-tpu/
